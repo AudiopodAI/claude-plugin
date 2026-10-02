@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "audiopod": {
+      "type": "http",
+      "url": "https://mcp.audiopod.ai/core",
+      "headers": {
+        "X-API-Key": "${user_config.api_key}"
+      }
+    }
+  }
+}
