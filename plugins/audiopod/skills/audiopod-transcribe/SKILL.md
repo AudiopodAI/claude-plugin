@@ -52,7 +52,9 @@ is a receipt.
 2. Call `check_job_status` with `job_id` set to that id and
    `tool: "transcribe_audio"`.
 3. While the status is `PENDING` or `PROCESSING`, tell the user it is still
-   running and check again after a short wait. Longer recordings take longer.
+   running and keep calling
+   `check_job_status` in the same response until it finishes (see the polling
+   loop in the audiopod-jobs skill); never end your reply promising to check later. Longer recordings take longer.
 4. When the status is `COMPLETED`, give the user the transcript or the output
    URL(s) from the result, quoted exactly.
 5. When the status is `FAILED`, report the error message from the result and

@@ -33,10 +33,13 @@ output appears later. This skill is how to follow a job to the end.
 1. Submit the job; note the id and the tool name.
 2. Call `check_job_status`.
 3. Read `status`:
-   - `PENDING` or `PROCESSING`: tell the user it is still running, wait a
-     little, then check again. Space checks out (roughly 10 s, then 20 s, then
-     30 s). Stop after a handful of checks and tell the user they can ask again
-     later; the job keeps running without you.
+   - `PENDING` or `PROCESSING`: call `check_job_status` again **in the same
+     response**. You cannot come back later on your own, so never end your
+     reply with "I'll check again in a moment". Keep checking until the job
+     finishes, up to about 15 checks (most jobs finish within a few minutes).
+     If it is still running after that, give the user the job id and tool name
+     and tell them to ask "any update on my AudioPod job?". The job keeps
+     running without you.
    - `COMPLETED`: report every output URL in the result with its label, quoted
      exactly. These links are safe to share with the user.
    - `FAILED`: report the error message and suggest a fix. Failed jobs do not

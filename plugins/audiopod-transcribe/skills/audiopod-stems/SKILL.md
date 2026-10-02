@@ -51,7 +51,9 @@ Only process audio the user has the rights to use.
 1. Call `separate_stems` and note the job id.
 2. Call `check_job_status` with that `job_id` and `tool: "separate_stems"`.
 3. While the status is `PENDING` or `PROCESSING`, tell the user it is still
-   working and check again after a short wait. A full song usually takes a
+   working and keep calling
+   `check_job_status` in the same response until it finishes (see the polling
+   loop in the audiopod-jobs skill); never end your reply promising to check later. A full song usually takes a
    few minutes.
 4. When `COMPLETED`, list every stem URL in the result with its label (vocals,
    drums, and so on), quoted exactly.

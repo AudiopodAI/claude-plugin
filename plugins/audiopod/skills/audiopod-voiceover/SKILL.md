@@ -39,8 +39,9 @@ custom voice the user created (see the `audiopod-voice` skill).
 
 1. Call `text_to_speech` and note the job id.
 2. Call `check_job_status` with that `job_id` and `tool: "text_to_speech"`.
-3. While `PENDING` or `PROCESSING`, tell the user it is rendering and check
-   again after a short wait.
+3. While `PENDING` or `PROCESSING`, tell the user it is rendering and keep calling
+   `check_job_status` in the same response until it finishes (see the polling
+   loop in the audiopod-jobs skill); never end your reply promising to check later.
 4. When `COMPLETED`, give the audio URL from the result, quoted exactly.
 5. When `FAILED`, report the error and suggest a fix (shorter text, a
    different voice).

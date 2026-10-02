@@ -59,8 +59,9 @@ Both tools return a **job id**.
 1. Call the tool and note the job id.
 2. Call `check_job_status` with that `job_id` and `tool` set to `clone_voice`
    or `change_voice`.
-3. While `PENDING` or `PROCESSING`, tell the user it is working and check again
-   after a short wait.
+3. While `PENDING` or `PROCESSING`, tell the user it is working and keep calling
+   `check_job_status` in the same response until it finishes (see the polling
+   loop in the audiopod-jobs skill); never end your reply promising to check later.
 4. When `COMPLETED`: for `clone_voice`, report the new voice's name and ID so
    the user can use it; for `change_voice`, give the output URL, quoted
    exactly.

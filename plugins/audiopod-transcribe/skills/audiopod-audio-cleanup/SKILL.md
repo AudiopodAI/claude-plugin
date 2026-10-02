@@ -72,8 +72,9 @@ Each tool returns a **job id**, not the finished audio.
 1. Call the tool and note the job id.
 2. Call `check_job_status` with that `job_id` and `tool` set to the tool name
    (`denoise_audio`, `separate_speakers`, or `convert_media`).
-3. While `PENDING` or `PROCESSING`, tell the user it is running and check again
-   after a short wait.
+3. While `PENDING` or `PROCESSING`, tell the user it is running and keep calling
+   `check_job_status` in the same response until it finishes (see the polling
+   loop in the audiopod-jobs skill); never end your reply promising to check later.
 4. When `COMPLETED`, give every output URL in the result, quoted exactly. For
    `separate_speakers` there is one URL per speaker.
 5. When `FAILED`, report the error message and suggest a fix.

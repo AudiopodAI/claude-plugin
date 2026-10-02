@@ -54,8 +54,9 @@ instead.
 
 1. Call `generate_music` and note the job id.
 2. Call `check_job_status` with that `job_id` and `tool: "generate_music"`.
-3. While `PENDING` or `PROCESSING`, tell the user it is being made and check
-   again after a short wait. A track usually takes one to three minutes.
+3. While `PENDING` or `PROCESSING`, tell the user it is being made and keep calling
+   `check_job_status` in the same response until it finishes (see the polling
+   loop in the audiopod-jobs skill); never end your reply promising to check later. A track usually takes one to three minutes.
 4. When `COMPLETED`, give every output URL from the result (audio, and lyrics
    if present), quoted exactly.
 5. When `FAILED`, report the error and suggest a fix (a simpler prompt, a
