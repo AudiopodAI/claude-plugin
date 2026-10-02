@@ -36,6 +36,9 @@ output appears later. This skill is how to follow a job to the end.
      response**. You cannot come back later on your own, so never end your
      reply with "I'll check again in a moment". Keep checking until the job
      finishes, up to about 15 checks (most jobs finish within a few minutes).
+     Space the checks out: if you have a shell tool (for example in Claude
+     Code), run `sleep 20` in the foreground between checks. Do not start it
+     in the background, because the reply can end before it fires.
      If it is still running after that, give the user the job id and tool name
      and tell them to ask "any update on my AudioPod job?". The job keeps
      running without you.
