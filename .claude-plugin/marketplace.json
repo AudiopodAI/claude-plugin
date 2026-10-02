@@ -7,14 +7,14 @@
   },
   "metadata": {
     "description": "AudioPod's audio tools for Claude: transcription, stem separation, audio cleanup, and more, over AudioPod's hosted MCP server.",
-    "version": "0.1.2"
+    "version": "0.1.3"
   },
   "plugins": [
     {
       "name": "audiopod",
       "source": "./plugins/audiopod",
       "description": "The full AudioPod toolkit: transcription, stem separation, noise removal, speaker separation, format conversion, voiceover, music, and voice tools.",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "category": "media",
       "homepage": "https://audiopod.ai",
       "keywords": ["audio", "transcription", "stems", "voiceover", "music", "podcast"]
@@ -23,7 +23,7 @@
       "name": "audiopod-transcribe",
       "source": "./plugins/audiopod-transcribe",
       "description": "AudioPod transcription and audio-processing tools: speech-to-text, stem separation, noise removal, speaker separation, and format conversion.",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "category": "media",
       "homepage": "https://audiopod.ai",
       "keywords": ["audio", "transcription", "subtitles", "stems", "denoise", "podcast"]
