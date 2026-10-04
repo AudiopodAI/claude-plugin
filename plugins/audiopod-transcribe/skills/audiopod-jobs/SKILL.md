@@ -17,6 +17,7 @@ output appears later. This skill is how to follow a job to the end.
 |---|---|---|
 | `job_id` | no | The exact id an earlier tool result printed in this conversation |
 | `tool` | no | The tool that started the job (see list below) |
+| `include_format` | no | `srt`, `vtt` or `txt`: for a completed transcription, returns that format inline in `message` |
 
 `tool` is one of: `transcribe_audio`, `separate_stems`, `denoise_audio`,
 `separate_speakers`, `convert_media`.

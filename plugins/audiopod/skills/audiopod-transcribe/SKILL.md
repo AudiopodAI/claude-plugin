@@ -55,13 +55,36 @@ is a receipt.
    running and keep calling
    `check_job_status` in the same response until it finishes (see the polling
    loop in the audiopod-jobs skill); never end your reply promising to check later. Longer recordings take longer.
-4. When the status is `COMPLETED`, give the user the transcript or the output
-   URL(s) from the result, quoted exactly.
+4. When the status is `COMPLETED`, give the user the transcript text from the
+   result `message`. For subtitles or a specific format, see "Getting SRT, VTT
+   or TXT" below.
 5. When the status is `FAILED`, report the error message from the result and
    suggest a fix (a reachable URL, a supported format, a shorter file).
 
 Never tell the user the transcript is ready before `check_job_status` says
 `COMPLETED`.
+
+## Getting SRT, VTT or TXT
+
+The `format` argument on `transcribe_audio` chooses how the job is produced.
+`include_format` on `check_job_status` is how you read the finished result as
+SRT, VTT or TXT. If the user asked for SRT up front, pass `format: "srt"` when
+starting the job AND use `include_format: "srt"` when reading the result.
+
+When the user wants subtitles or a specific format:
+
+1. Wait until the job is `COMPLETED`.
+2. Call `check_job_status` with `tool: "transcribe_audio"`, the `job_id`, and
+   `include_format` set to `srt`, `vtt` or `txt`.
+3. Give the user the formatted text returned in the result `message`.
+4. In Claude Code, or whenever a file tool is available, offer to save it as a
+   `.srt`, `.vtt` or `.txt` file named after the source (for example
+   `interview.srt`).
+5. If `transcript_formatted_truncated` is true, say the output was cut at
+   20,000 characters and offer to transcribe in shorter pieces.
+
+Never invent or quote API download URLs. The only link in a result is a
+presigned JSON link; tell the user it expires after about an hour.
 
 ## After it finishes
 
