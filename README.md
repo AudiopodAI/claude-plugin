@@ -10,10 +10,10 @@ your AudioPod account and hands back the results.
 
 | Plugin | What it includes |
 |---|---|
-| `audiopod` | The full AudioPod toolkit: transcription, stem separation, noise removal, speaker separation, format conversion, voiceover, music, and voice tools |
-| `audiopod-transcribe` | Transcription and audio processing only: transcription, stem separation, noise removal, speaker separation, and format conversion |
+| `audiopod` | Transcription and audio processing: transcription, stem separation, noise removal, speaker separation, and format conversion |
+| `audiopod-studio` | Everything in `audiopod`, plus music, text to speech, and voice features |
 
-Install one of them, not both.
+Install ONE of them, not both: both register an MCP server named `audiopod`, so installing both would duplicate the tools.
 
 ## Install
 
@@ -24,10 +24,10 @@ In Claude Code:
 /plugin install audiopod@audiopod
 ```
 
-or, for the transcription and audio-processing plugin:
+or, for the full plugin with music, text to speech, and voice features:
 
 ```
-/plugin install audiopod-transcribe@audiopod
+/plugin install audiopod-studio@audiopod
 ```
 
 Install the plugin. The first time Claude uses an AudioPod tool it asks you to
@@ -44,7 +44,7 @@ Create a key at <https://audiopod.ai/dashboard/account/api-keys> and run:
 claude mcp add --transport http audiopod https://mcp.audiopod.ai --header "X-API-Key: <your key>"
 ```
 
-This is added separately from the plugin (use `https://mcp.audiopod.ai/core` for the transcribe plugin's tool set).
+This is added separately from the plugin (use `https://mcp.audiopod.ai/core` for the `audiopod` plugin's tool set).
 
 ## What gets sent where
 

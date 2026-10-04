@@ -1,6 +1,6 @@
 ---
 name: audiopod-jobs
-description: Use when the user asks about an AudioPod job - whether it is done, where the output is, "any update?", "is it finished?", "what happened to my transcript or stems?" - or when any AudioPod tool has just returned a job id that needs following up. Also use for questions about how AudioPod jobs, credits, and the AudioPod connection work.
+description: Use when the user asks about an AudioPod job - whether it is done, where the output is, "any update?", "is it finished?", "what happened to my transcript, stems, or file?" - or when any AudioPod tool has just returned a job id that needs following up. Also use for questions about how AudioPod jobs, credits, and the AudioPod connection work.
 ---
 
 # AudioPod jobs, polling, and credits
@@ -20,7 +20,8 @@ output appears later. This skill is how to follow a job to the end.
 | `include_format` | no | `srt`, `vtt` or `txt`: for a completed transcription, returns that format inline in `message` |
 
 `tool` is one of: `transcribe_audio`, `separate_stems`, `denoise_audio`,
-`separate_speakers`, `convert_media`.
+`separate_speakers`, `convert_media`, `text_to_speech`, `generate_music`,
+`clone_voice`, `change_voice`.
 
 - Know the id: pass `job_id` and `tool`.
 - Vague follow-up ("any update?"): call with **no arguments**, or with only

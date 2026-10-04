@@ -1,27 +1,34 @@
-# AudioPod Transcribe & Audio Tools for Claude
+# AudioPod Studio for Claude
 
-This plugin connects Claude to AudioPod's transcription and audio-processing
-tools through AudioPod's hosted MCP server. Ask in plain language and Claude
-starts the job, follows it until it finishes, and gives you the results.
+The AudioPod Studio plugin connects Claude to AudioPod's audio tools through
+AudioPod's hosted MCP server. Ask in plain language and Claude picks the right
+tool, starts the job, follows it until it finishes, and gives you the output
+links.
 
 ## What you can do
 
 - **Transcribe** audio or video with AudioTranscribe: speaker labels,
   timestamps, and SRT or VTT subtitles in 100+ languages.
 - **Split songs into stems** with AudioStems: vocals, drums, bass, piano,
-  guitar, and the rest.
-- **Remove background noise** such as hiss, hum, wind, and room tone.
-- **Separate speakers**: one track per person from an interview, meeting, or
-  podcast.
-- **Convert formats** between MP3, WAV, FLAC, OGG, M4A, and AAC, including
-  extracting the soundtrack from a video.
+  guitar, and the rest; acapellas and instrumentals.
+- **Clean up recordings**: remove background noise, split a conversation into
+  one track per speaker, and convert between audio and video formats.
+- **Create voiceovers** from text in 200+ languages.
+- **Create music**: songs, instrumentals, and beats from a description.
+- **Custom voices**: create a voice from a sample you have the rights to, or
+  re-voice a recording.
 
-Slash commands: `/audiopod-transcribe:transcribe`,
-`/audiopod-transcribe:stems`, `/audiopod-transcribe:status`.
+Slash commands: `/audiopod-studio:transcribe`, `/audiopod-studio:stems`,
+`/audiopod-studio:tts`, `/audiopod-studio:status`.
+
+Studio adds music, text to speech, and voice features on top of the
+transcription and audio-processing tools in the `audiopod` plugin. Install only
+one AudioPod plugin, not both: both register an MCP server named `audiopod`, so
+installing both would duplicate the tools.
 
 ## Setup
 
-Install the plugin. The first time Claude uses an AudioPod tool it asks you to
+Install with `/plugin install audiopod-studio@audiopod`. The first time Claude uses an AudioPod tool it asks you to
 connect: choose Connect (or run /mcp, select AudioPod, then Authenticate). A
 browser window opens, you sign in to your AudioPod account, review what the
 connection can do, and select Allow access. No API key to copy. You can
@@ -32,7 +39,7 @@ disconnect at any time from your AudioPod account page.
 Create a key at <https://audiopod.ai/dashboard/account/api-keys> and run:
 
 ```
-claude mcp add --transport http audiopod https://mcp.audiopod.ai/core --header "X-API-Key: <your key>"
+claude mcp add --transport http audiopod https://mcp.audiopod.ai --header "X-API-Key: <your key>"
 ```
 
 This is added separately from the plugin.
@@ -42,8 +49,7 @@ This is added separately from the plugin.
 AudioPod's tools take a link to your audio, which AudioPod downloads. They
 cannot read files on your computer directly. Share a link to the file (for
 example from cloud storage), or upload it in the AudioPod dashboard. Output
-from one job can be passed straight into the next, for example noise removal
-followed by transcription.
+from one job can be passed straight into the next.
 
 ## Data, credits, and privacy
 
