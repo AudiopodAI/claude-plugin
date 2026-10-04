@@ -10,8 +10,8 @@ your AudioPod account and hands back the results.
 
 | Plugin | What it includes |
 |---|---|
-| `audiopod` | Transcription and audio processing: transcription, stem separation, noise removal, speaker separation, and format conversion |
-| `audiopod-studio` | Everything in `audiopod`, plus music, text to speech, and voice features |
+| `audiopod` | Transcription and audio processing: transcription, stem separation, noise removal, speaker separation, format conversion, and audio-to-MIDI conversion |
+| `audiopod-studio` | Everything in `audiopod` (including audio-to-MIDI conversion), plus music, text to speech, and voice features |
 
 Install ONE of them, not both: both register an MCP server named `audiopod`, so installing both would duplicate the tools.
 

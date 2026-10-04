@@ -10,13 +10,16 @@ starts the job, follows it until it finishes, and gives you the results.
   timestamps, and SRT or VTT subtitles in 100+ languages.
 - **Split songs into stems** with AudioStems: vocals, drums, bass, piano,
   guitar, and the rest.
+- **Convert audio to MIDI**: a melody, instrument, or song becomes MIDI files
+  for your DAW or notation tool.
 - **Remove background noise** such as hiss, hum, wind, and room tone.
 - **Separate speakers**: one track per person from an interview, meeting, or
   podcast.
 - **Convert formats** between MP3, WAV, FLAC, OGG, M4A, and AAC, including
   extracting the soundtrack from a video.
 
-Slash commands: `/audiopod:transcribe`, `/audiopod:stems`, `/audiopod:status`.
+Slash commands: `/audiopod:transcribe`, `/audiopod:stems`, `/audiopod:midi`,
+`/audiopod:status`.
 
 Install only one AudioPod plugin, not both: this one and AudioPod Studio
 (`audiopod-studio`) both register an MCP server named `audiopod`, so installing

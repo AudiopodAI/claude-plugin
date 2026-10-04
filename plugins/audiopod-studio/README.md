@@ -11,6 +11,8 @@ links.
   timestamps, and SRT or VTT subtitles in 100+ languages.
 - **Split songs into stems** with AudioStems: vocals, drums, bass, piano,
   guitar, and the rest; acapellas and instrumentals.
+- **Convert audio to MIDI**: a melody, instrument, or song becomes MIDI files
+  for your DAW or notation tool.
 - **Clean up recordings**: remove background noise, split a conversation into
   one track per speaker, and convert between audio and video formats.
 - **Create voiceovers** from text in 200+ languages.
@@ -18,7 +20,7 @@ links.
 - **Custom voices**: create a voice from a sample you have the rights to, or
   re-voice a recording.
 
-Slash commands: `/audiopod-studio:transcribe`, `/audiopod-studio:stems`,
+Slash commands: `/audiopod-studio:transcribe`, `/audiopod-studio:stems`, `/audiopod-studio:midi`,
 `/audiopod-studio:tts`, `/audiopod-studio:status`.
 
 Studio adds music, text to speech, and voice features on top of the

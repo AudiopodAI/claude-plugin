@@ -20,7 +20,7 @@ output appears later. This skill is how to follow a job to the end.
 | `include_format` | no | `srt`, `vtt` or `txt`: for a completed transcription, returns that format inline in `message` |
 
 `tool` is one of: `transcribe_audio`, `separate_stems`, `denoise_audio`,
-`separate_speakers`, `convert_media`.
+`separate_speakers`, `convert_media`, `audio_to_midi`.
 
 - Know the id: pass `job_id` and `tool`.
 - Vague follow-up ("any update?"): call with **no arguments**, or with only
