@@ -21,10 +21,21 @@ Slash commands: `/audiopod-transcribe:transcribe`,
 
 ## Setup
 
-1. Create an AudioPod API key (it starts with `ap_`) at
-   <https://audiopod.ai/dashboard/account/api-keys>.
-2. Install the plugin and enter the key when Claude Code asks for it. The key
-   is kept in your system's secure credential store.
+Install the plugin. The first time Claude uses an AudioPod tool it asks you to
+connect: choose Connect (or run /mcp, select AudioPod, then Authenticate). A
+browser window opens, you sign in to your AudioPod account, review what the
+connection can do, and select Allow access. No API key to copy. You can
+disconnect at any time from your AudioPod account page.
+
+### Using an API key instead (CI or headless)
+
+Create a key at <https://audiopod.ai/dashboard/account/api-keys> and run:
+
+```
+claude mcp add --transport http audiopod https://mcp.audiopod.ai/core --header "X-API-Key: <your key>"
+```
+
+This is added separately from the plugin.
 
 ## How files are supplied
 
@@ -39,8 +50,7 @@ followed by transcription.
 - **Where your data goes**: audio, video, and text you send through this plugin
   are sent to AudioPod's servers at `mcp.audiopod.ai` and `api.audiopod.ai` for
   processing. Nothing runs locally.
-- **Credits**: each job consumes credits from the AudioPod account that owns
-  your API key. Checking a job's status is free. See
+- **Credits**: each job consumes credits from the AudioPod account you connected. Checking a job's status is free. See
   <https://audiopod.ai/pricing>.
 - **Retention**: outputs are stored according to AudioPod's retention policy,
   described at <https://audiopod.ai/privacy>.

@@ -1,7 +1,7 @@
 {
   "name": "audiopod",
   "displayName": "AudioPod",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "AudioPod's audio tools inside Claude: transcribe recordings, split songs into stems, clean up noisy audio, separate speakers, convert formats, and create voiceovers, music, and custom voices.",
   "author": {
     "name": "AudioPod",
@@ -11,19 +11,18 @@
   "homepage": "https://audiopod.ai",
   "repository": "https://github.com/AudiopodAI/claude-plugin",
   "license": "MIT",
-  "keywords": ["audio", "transcription", "stems", "denoise", "voiceover", "music", "podcast"],
+  "keywords": [
+    "audio",
+    "transcription",
+    "stems",
+    "denoise",
+    "voiceover",
+    "music",
+    "podcast"
+  ],
   "icon": "./assets/icon.png",
   "documentationUrl": "https://docs.audiopod.ai",
   "supportUrl": "https://audiopod.ai/support",
   "privacyPolicyUrl": "https://audiopod.ai/privacy",
-  "termsOfServiceUrl": "https://audiopod.ai/terms",
-  "userConfig": {
-    "api_key": {
-      "type": "string",
-      "title": "AudioPod API key (starts with ap_)",
-      "description": "AudioPod API key (starts with ap_). Create one at https://audiopod.ai/dashboard/account/api-keys",
-      "required": true,
-      "sensitive": true
-    }
-  }
+  "termsOfServiceUrl": "https://audiopod.ai/terms"
 }

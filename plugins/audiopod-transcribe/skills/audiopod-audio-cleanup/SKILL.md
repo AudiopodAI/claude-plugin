@@ -84,6 +84,5 @@ Each tool returns a **job id**, not the finished audio.
 - **Insufficient credits (402)**: tell the user and link
   https://audiopod.ai/pricing. Do not retry.
 - **Missing scope**: these tools need `audio:write`, and polling needs
-  `audio:read`. Keys are managed at
-  https://audiopod.ai/dashboard/account/api-keys.
+  `audio:read`. Reconnect AudioPod (/mcp, select AudioPod, then Authenticate) to grant them.
 - Never quote prices or credit amounts. Link https://audiopod.ai/pricing.

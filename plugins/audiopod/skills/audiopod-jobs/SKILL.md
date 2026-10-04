@@ -1,6 +1,6 @@
 ---
 name: audiopod-jobs
-description: Use when the user asks about an AudioPod job - whether it is done, where the output is, "any update?", "is it finished?", "what happened to my transcript, stems, or file?" - or when any AudioPod tool has just returned a job id that needs following up. Also use for questions about how AudioPod jobs, credits, and API keys work.
+description: Use when the user asks about an AudioPod job - whether it is done, where the output is, "any update?", "is it finished?", "what happened to my transcript, stems, or file?" - or when any AudioPod tool has just returned a job id that needs following up. Also use for questions about how AudioPod jobs, credits, and the AudioPod connection work.
 ---
 
 # AudioPod jobs, polling, and credits
@@ -58,7 +58,7 @@ the real output. Wait for the first job to be `COMPLETED` first.
 
 ## Credits
 
-- Each job is paid in advance from the AudioPod account linked to the API key.
+- Each job is paid in advance from the connected AudioPod account.
   If a job fails, its credits are returned.
 - `check_job_status` costs nothing.
 - **Insufficient credits (402)**: tell the user plainly and link
@@ -66,14 +66,19 @@ the real output. Wait for the first job to be `COMPLETED` first.
 - Never state prices, rates, or credit amounts. Always link
   https://audiopod.ai/pricing.
 
-## API keys and scopes
+## Connection and permissions
 
-- Keys start with `ap_` and are created at
-  https://audiopod.ai/dashboard/account/api-keys. The key is entered once in
-  the plugin settings; never ask the user to paste it into the chat.
-- A "missing required scope" error names the scope the key lacks. Polling
-  needs `audio:read`. The user can create a new key with that scope.
-- An unauthorized error means the key is missing, revoked, or mistyped.
+- AudioPod is connected through sign-in (OAuth). The user approves what the
+  connection can do when they connect; never ask the user to paste secrets into
+  the chat.
+- A "missing required scope" error names the permission the connection lacks.
+  Polling needs `audio:read`. The user can reconnect AudioPod (/mcp, select
+  AudioPod, then Authenticate) to grant it.
+- An unauthorized error means the connection has expired or been disconnected.
+  Ask the user to reconnect it with /mcp, select AudioPod, then Authenticate.
+- A user may instead have an API key connection added with `claude mcp add`;
+  the same errors apply, and the key's scopes are managed in their AudioPod
+  account.
 
 ## Help
 

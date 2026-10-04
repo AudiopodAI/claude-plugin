@@ -74,9 +74,6 @@ Never tell the user the transcript is ready before `check_job_status` says
 
 - **Insufficient credits (402)**: the account does not have enough credits for
   this job. Tell the user and link https://audiopod.ai/pricing. Do not retry.
-- **Missing scope**: the API key lacks the `transcribe` or `audio:read` scope.
-  The user can create a key with the right scopes at
-  https://audiopod.ai/dashboard/account/api-keys.
-- **Unauthorized**: the API key is missing or wrong. Ask the user to update it
-  in the plugin settings.
+- **Missing scope**: the AudioPod connection doesn't include the `transcribe` or `audio:read` permissions; reconnect AudioPod (/mcp, select AudioPod, then Authenticate) to grant them.
+- **Unauthorized**: the AudioPod connection has expired or been disconnected; ask the user to reconnect it with /mcp, select AudioPod, then Authenticate.
 - Never quote prices or credit amounts. Link https://audiopod.ai/pricing.
