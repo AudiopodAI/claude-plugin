@@ -1,6 +1,4 @@
 ---
-type: regex
-target: final_response
-pattern: '\$\s?\d|\d+\s*credits'
-match: not_contains
+type: llm
 ---
+The final response states no prices, dollar amounts, or credit numbers/costs (linking a pricing page is fine). Fail if any specific price or credit amount appears.
