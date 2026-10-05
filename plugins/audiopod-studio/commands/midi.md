@@ -1,6 +1,6 @@
 ---
 description: Convert a recording to MIDI with AudioPod
-argument-hint: <file-url> [general|piano|vocal]
+argument-hint: "<file-url> [general|piano|vocal]"
 ---
 
 Convert this recording to MIDI with AudioPod: $ARGUMENTS

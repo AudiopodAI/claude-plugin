@@ -1,6 +1,6 @@
 ---
 description: Split a track into stems (vocals, drums, bass, and more) with AudioPod
-argument-hint: <file-url> [4stem|6stem|2stem_vocals|2stem_other]
+argument-hint: "<file-url> [4stem|6stem|2stem_vocals|2stem_other]"
 ---
 
 Separate this track into stems with AudioPod: $ARGUMENTS

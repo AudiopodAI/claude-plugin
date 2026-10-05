@@ -1,6 +1,6 @@
 ---
 description: Check the status of an AudioPod job and get its output links
-argument-hint: [job-id] [tool]
+argument-hint: "[job-id] [tool]"
 ---
 
 Check the status of my AudioPod job: $ARGUMENTS

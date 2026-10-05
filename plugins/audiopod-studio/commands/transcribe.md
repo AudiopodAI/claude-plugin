@@ -1,6 +1,6 @@
 ---
 description: Transcribe an audio or video URL with AudioPod, with speaker labels and optional subtitles
-argument-hint: <file-url> [srt|vtt|json] [language]
+argument-hint: "<file-url> [srt|vtt|json] [language]"
 ---
 
 Transcribe this with AudioPod: $ARGUMENTS
