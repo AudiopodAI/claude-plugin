@@ -21,6 +21,7 @@ custom voice the user created (see the `audiopod-voice` skill).
 
 ## Before you call
 
+- **Text**: if the user hasn't given the text to speak, ask for it first.
 - **Length**: never silently truncate. If the text is over 20,000 characters,
   tell the user and split it at paragraph or section breaks into several calls,
   numbering the parts.
@@ -54,6 +55,6 @@ its part number.
 - **Insufficient credits (402)**: tell the user and link
   https://audiopod.ai/pricing. Do not retry. For long scripts, suggest
   confirming the account balance before submitting every part.
-- **Missing scope**: the connection needs `voice:synthesize` and `audio:write`. Reconnect AudioPod (/mcp, select AudioPod, then Authenticate) to grant them.
+- **Missing scope**: the connection needs `voice:synthesize` and `audio:write`. Reconnect AudioPod from the app's connector or MCP settings to grant them.
 - **Unknown voice**: ask the user to confirm the voice, or omit `voice_id`.
 - Never quote prices or credit amounts. Link https://audiopod.ai/pricing.

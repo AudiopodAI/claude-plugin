@@ -1,6 +1,8 @@
-# AudioPod plugins for Claude
+# AudioPod plugins for Claude, ChatGPT, and Codex
 
-This repository is a Claude Code plugin marketplace that connects Claude to
+This repository is a Claude Code plugin marketplace, and also the source of
+AudioPod's OpenAI plugin for ChatGPT and Codex (see
+[Use with ChatGPT / Codex](#use-with-chatgpt--codex)). It connects Claude to
 [AudioPod](https://audiopod.ai)'s audio tools through AudioPod's hosted MCP
 server. Ask Claude to transcribe a recording, split a song into stems, clean up
 a noisy interview, or separate a podcast by speaker, and it runs the job on
@@ -45,6 +47,53 @@ claude mcp add --transport http audiopod https://mcp.audiopod.ai --header "X-API
 ```
 
 This is added separately from the plugin (use `https://mcp.audiopod.ai/core` for the `audiopod` plugin's tool set).
+
+## Use with ChatGPT / Codex
+
+The same skills ship to OpenAI as the **AudioPod** plugin, built from
+`plugins/audiopod-studio` (the full tool set). It connects to the same hosted
+MCP server, `https://mcp.audiopod.ai`, and you sign in with your AudioPod
+account the same way.
+
+- **ChatGPT**: install AudioPod from the plugin directory once it is listed.
+  Until then, go to <https://chatgpt.com/plugins>, select the plus button, then
+  **Add custom MCP server**, and enter `https://mcp.audiopod.ai`.
+- **Codex**: add the server and sign in:
+
+  ```
+  codex mcp add audiopod --url https://mcp.audiopod.ai
+  codex mcp login audiopod
+  ```
+
+### How the OpenAI package is laid out
+
+`plugins/audiopod-studio` serves both hosts, so one set of skills can't drift:
+
+| File | Used by |
+|---|---|
+| `.claude-plugin/plugin.json` | Claude |
+| `.codex-plugin/plugin.json` | OpenAI (listing metadata; points at `./.mcp.json` and `./skills/`). Named `audiopod-studio` here to match the marketplace entry; the ZIP build names it `audiopod` for the OpenAI listing |
+| `.mcp.json` | Both |
+| `skills/` | Both (kept host-neutral; CI fails on host-specific wording) |
+| `commands/`, `evals/`, `README.md` | Claude only, left out of the OpenAI ZIP |
+
+Build the upload for the OpenAI plugin portal with:
+
+```
+scripts/build-openai-zip.sh
+```
+
+It writes `dist/audiopod-openai.zip` (git-ignored). It refuses symlinks, hidden
+files under `skills/`, and anything that resolves outside the plugin. It also
+fails if a `SKILL.md` is over 256 KiB, a skill is over 5 MiB, or the archive is
+over 8 MiB. These size limits are our own conservative ones, not OpenAI's.
+OpenAI documents 100 MB compressed, 512 MiB extracted, and 100 MiB per archive
+entry ([submission error reference](https://developers.openai.com/plugins/deploy/submission-errors)).
+
+On every pull request, CI (`.github/workflows/ci.yml`) validates both Claude
+plugins, checks the OpenAI manifest's fields, limits, and URLs in the source
+tree and in the built ZIP, and runs negative tests for those checks
+(`tests/test_ci_checks.py`).
 
 ## What gets sent where
 

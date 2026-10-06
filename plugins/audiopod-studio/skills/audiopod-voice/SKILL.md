@@ -73,7 +73,7 @@ Both tools return a **job id**.
 - **Insufficient credits (402)**: tell the user and link
   https://audiopod.ai/pricing. Do not retry.
 - **Missing scope**: `clone_voice` needs `voice:clone`; `change_voice` needs
-  `voice:synthesize`; both need `audio:write`. Reconnect AudioPod (/mcp, select AudioPod, then Authenticate) to grant them.
+  `voice:synthesize`; both need `audio:write`. Reconnect AudioPod from the app's connector or MCP settings to grant them.
 - **Voice limit reached**: the plan's custom voice slots are full. Link
   https://audiopod.ai/pricing.
 - Never quote prices or credit amounts. Link https://audiopod.ai/pricing.

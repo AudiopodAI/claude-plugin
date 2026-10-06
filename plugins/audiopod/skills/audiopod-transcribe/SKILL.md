@@ -32,12 +32,14 @@ the user's computer.
   a share link from their cloud storage), or point them to the AudioPod
   dashboard at https://audiopod.ai to upload it.
 
+If the user hasn't given a link yet, ask for one before calling the tool.
 Never construct, guess, shorten, or edit a URL. A URL that neither the user nor
 an earlier tool result supplied is rejected.
 
 ## Good defaults
 
-- Interviews, podcasts, meetings: `diarize: true`.
+- Speaker labels: set `diarize: true` unless the user says there is only one
+  speaker (interviews, podcasts, and meetings always need it).
 - Subtitles for a video: `format: "srt"` (or `"vtt"` for web players).
 - Analysis or quoting by timestamp: `format: "json"`.
 - Plain reading copy: leave `format` at `text`.

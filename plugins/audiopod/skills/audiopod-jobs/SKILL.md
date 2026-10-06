@@ -22,7 +22,10 @@ output appears later. This skill is how to follow a job to the end.
 `tool` is one of: `transcribe_audio`, `separate_stems`, `denoise_audio`,
 `separate_speakers`, `convert_media`, `audio_to_midi`.
 
-- Know the id: pass `job_id` and `tool`.
+- Know the id: pass `job_id` and `tool`. Job ids are only unique per tool.
+- Know the id but not the tool: use the tool that started that job earlier in
+  the conversation. If you don't know it, ask the user what kind of job it was
+  (for example transcription or stems) before calling.
 - Vague follow-up ("any update?"): call with **no arguments**, or with only
   `tool`. AudioPod resolves the user's most recent job. Do not ask the user for
   an id they do not have.

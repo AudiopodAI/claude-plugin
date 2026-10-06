@@ -69,5 +69,5 @@ Each call makes a new track and spends credits again, so do not resubmit to
 
 - **Insufficient credits (402)**: tell the user and link
   https://audiopod.ai/pricing. Do not retry.
-- **Missing scope**: the connection needs `music:generate` and `audio:write`. Reconnect AudioPod (/mcp, select AudioPod, then Authenticate) to grant them.
+- **Missing scope**: the connection needs `music:generate` and `audio:write`. Reconnect AudioPod from the app's connector or MCP settings to grant them.
 - Never quote prices or credit amounts. Link https://audiopod.ai/pricing.

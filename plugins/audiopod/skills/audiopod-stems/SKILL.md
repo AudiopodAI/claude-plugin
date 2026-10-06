@@ -40,6 +40,7 @@ the user's computer.
 - **A local file**: ask for a link AudioPod can download (for example a share
   link from cloud storage), or point them to https://audiopod.ai to upload it.
 
+If the user hasn't given a link yet, ask for one before calling the tool.
 Never construct, guess, or edit a URL.
 
 Only process audio the user has the rights to use.
