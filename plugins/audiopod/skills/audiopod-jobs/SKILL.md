@@ -40,8 +40,8 @@ output appears later. This skill is how to follow a job to the end.
      response**. You cannot come back later on your own, so never end your
      reply with "I'll check again in a moment". Keep checking until the job
      finishes, up to about 15 checks (most jobs finish within a few minutes).
-     Space the checks out: if you have a shell tool (for example in a coding
-     agent), run `sleep 20` in the foreground between checks. Do not start it
+     Space the checks out: if you have a shell tool (for example in Claude
+     Code), run `sleep 20` in the foreground between checks. Do not start it
      in the background, because the reply can end before it fires.
      If it is still running after that, give the user the job id and tool name
      and tell them to ask "any update on my AudioPod job?". The job keeps
@@ -75,13 +75,13 @@ the real output. Wait for the first job to be `COMPLETED` first.
   connection can do when they connect; never ask the user to paste secrets into
   the chat.
 - A "missing required scope" error names the permission the connection lacks.
-  Polling needs `audio:read`. The user can reconnect AudioPod from the app's
-  connector or MCP settings to grant it.
+  Polling needs `audio:read`. The user can reconnect AudioPod (/mcp, select
+  AudioPod, then Authenticate) to grant it.
 - An unauthorized error means the connection has expired or been disconnected.
-  Ask the user to reconnect it from the app's connector or MCP settings.
-- A user may instead have connected with an AudioPod API key in their app's
-  MCP settings; the same errors apply, and the key's scopes are managed in
-  their AudioPod account.
+  Ask the user to reconnect it with /mcp, select AudioPod, then Authenticate.
+- A user may instead have an API key connection added with `claude mcp add`;
+  the same errors apply, and the key's scopes are managed in their AudioPod
+  account.
 
 ## Help
 

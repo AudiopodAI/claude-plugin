@@ -32,12 +32,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Negative tests for the CI checks
+        run: python3 tests/test_ci_checks.py
       - name: Codex manifest (fields, limits, https, live URLs)
         run: python3 scripts/check_codex_manifest.py
       - name: Host-neutral language in shared skills
         run: python3 scripts/lint_neutral_language.py
       - name: Build ZIP and enforce size limits
         run: scripts/build-openai-zip.sh
+      - name: Codex manifest inside the built ZIP (referenced files present, listing name)
+        run: python3 scripts/check_codex_manifest.py --offline --zip dist/audiopod-openai.zip
       - name: Host-neutral language in the built ZIP
         run: |
           mkdir -p dist/unzipped
@@ -47,7 +51,6 @@ jobs:
           test ! -e dist/unzipped/.claude-plugin
           test -f dist/unzipped/.codex-plugin/plugin.json
           test -f dist/unzipped/.mcp.json
-          python3 -c 'import json,sys; n=json.load(open("dist/unzipped/.codex-plugin/plugin.json"))["name"]; sys.exit(0 if n=="audiopod" else f"ZIP manifest name is {n!r}, expected audiopod")'
           python3 scripts/lint_neutral_language.py dist/unzipped
       - uses: actions/upload-artifact@v4
         with:

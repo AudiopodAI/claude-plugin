@@ -62,5 +62,5 @@ reports `COMPLETED`.
 
 - **Insufficient credits (402)**: tell the user the account needs more credits
   and link https://audiopod.ai/pricing. Do not retry.
-- **Unauthorized**: the AudioPod connection has expired or been disconnected; ask the user to reconnect it from the app's connector or MCP settings.
+- **Unauthorized**: the AudioPod connection has expired or been disconnected; ask the user to reconnect it with /mcp, select AudioPod, then Authenticate.
 - Never quote prices or credit amounts. Link https://audiopod.ai/pricing.

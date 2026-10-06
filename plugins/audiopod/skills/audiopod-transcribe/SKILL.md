@@ -79,7 +79,7 @@ When the user wants subtitles or a specific format:
 2. Call `check_job_status` with `tool: "transcribe_audio"`, the `job_id`, and
    `include_format` set to `srt`, `vtt` or `txt`.
 3. Give the user the formatted text returned in the result `message`.
-4. Whenever a file tool is available, offer to save it as a
+4. In Claude Code, or whenever a file tool is available, offer to save it as a
    `.srt`, `.vtt` or `.txt` file named after the source (for example
    `interview.srt`).
 5. If `transcript_formatted_truncated` is true, say the output was cut at
@@ -99,6 +99,6 @@ presigned JSON link; tell the user it expires after about an hour.
 
 - **Insufficient credits (402)**: the account does not have enough credits for
   this job. Tell the user and link https://audiopod.ai/pricing. Do not retry.
-- **Missing scope**: the AudioPod connection doesn't include the `transcribe` or `audio:read` permissions; reconnect AudioPod from the app's connector or MCP settings to grant them.
-- **Unauthorized**: the AudioPod connection has expired or been disconnected; ask the user to reconnect it from the app's connector or MCP settings.
+- **Missing scope**: the AudioPod connection doesn't include the `transcribe` or `audio:read` permissions; reconnect AudioPod (/mcp, select AudioPod, then Authenticate) to grant them.
+- **Unauthorized**: the AudioPod connection has expired or been disconnected; ask the user to reconnect it with /mcp, select AudioPod, then Authenticate.
 - Never quote prices or credit amounts. Link https://audiopod.ai/pricing.

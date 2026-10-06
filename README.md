@@ -83,11 +83,17 @@ Build the upload for the OpenAI plugin portal with:
 scripts/build-openai-zip.sh
 ```
 
-It writes `dist/audiopod-openai.zip` (git-ignored) and fails if a `SKILL.md`
-is over 256 KiB, a skill is over 5 MiB, or the archive is over 8 MiB. CI
-(`.github/workflows/ci.yml`) also validates both Claude plugins, checks the
-OpenAI manifest's fields, limits, and URLs, and builds the ZIP on every pull
-request.
+It writes `dist/audiopod-openai.zip` (git-ignored). It refuses symlinks, hidden
+files under `skills/`, and anything that resolves outside the plugin. It also
+fails if a `SKILL.md` is over 256 KiB, a skill is over 5 MiB, or the archive is
+over 8 MiB. These size limits are our own conservative ones, not OpenAI's.
+OpenAI documents 100 MB compressed, 512 MiB extracted, and 100 MiB per archive
+entry ([submission error reference](https://developers.openai.com/plugins/deploy/submission-errors)).
+
+On every pull request, CI (`.github/workflows/ci.yml`) validates both Claude
+plugins, checks the OpenAI manifest's fields, limits, and URLs in the source
+tree and in the built ZIP, and runs negative tests for those checks
+(`tests/test_ci_checks.py`).
 
 ## What gets sent where
 
