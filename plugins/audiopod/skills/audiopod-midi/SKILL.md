@@ -35,6 +35,7 @@ the user's computer.
 - **A local file**: ask for a link AudioPod can download (for example a share
   link from cloud storage), or point them to https://audiopod.ai to upload it.
 
+If the user hasn't given a link yet, ask for one before calling the tool.
 Never construct, guess, or edit a URL.
 
 Only process audio the user has the rights to use.
@@ -61,5 +62,5 @@ reports `COMPLETED`.
 
 - **Insufficient credits (402)**: tell the user the account needs more credits
   and link https://audiopod.ai/pricing. Do not retry.
-- **Unauthorized**: the AudioPod connection has expired or been disconnected; ask the user to reconnect it with /mcp, select AudioPod, then Authenticate.
+- **Unauthorized**: the AudioPod connection has expired or been disconnected; ask the user to reconnect it from the app's connector or MCP settings.
 - Never quote prices or credit amounts. Link https://audiopod.ai/pricing.

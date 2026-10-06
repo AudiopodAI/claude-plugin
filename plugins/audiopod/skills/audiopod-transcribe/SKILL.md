@@ -32,12 +32,14 @@ the user's computer.
   a share link from their cloud storage), or point them to the AudioPod
   dashboard at https://audiopod.ai to upload it.
 
+If the user hasn't given a link yet, ask for one before calling the tool.
 Never construct, guess, shorten, or edit a URL. A URL that neither the user nor
 an earlier tool result supplied is rejected.
 
 ## Good defaults
 
-- Interviews, podcasts, meetings: `diarize: true`.
+- Speaker labels: set `diarize: true` unless the user says there is only one
+  speaker (interviews, podcasts, and meetings always need it).
 - Subtitles for a video: `format: "srt"` (or `"vtt"` for web players).
 - Analysis or quoting by timestamp: `format: "json"`.
 - Plain reading copy: leave `format` at `text`.
@@ -77,7 +79,7 @@ When the user wants subtitles or a specific format:
 2. Call `check_job_status` with `tool: "transcribe_audio"`, the `job_id`, and
    `include_format` set to `srt`, `vtt` or `txt`.
 3. Give the user the formatted text returned in the result `message`.
-4. In Claude Code, or whenever a file tool is available, offer to save it as a
+4. Whenever a file tool is available, offer to save it as a
    `.srt`, `.vtt` or `.txt` file named after the source (for example
    `interview.srt`).
 5. If `transcript_formatted_truncated` is true, say the output was cut at
@@ -97,6 +99,6 @@ presigned JSON link; tell the user it expires after about an hour.
 
 - **Insufficient credits (402)**: the account does not have enough credits for
   this job. Tell the user and link https://audiopod.ai/pricing. Do not retry.
-- **Missing scope**: the AudioPod connection doesn't include the `transcribe` or `audio:read` permissions; reconnect AudioPod (/mcp, select AudioPod, then Authenticate) to grant them.
-- **Unauthorized**: the AudioPod connection has expired or been disconnected; ask the user to reconnect it with /mcp, select AudioPod, then Authenticate.
+- **Missing scope**: the AudioPod connection doesn't include the `transcribe` or `audio:read` permissions; reconnect AudioPod from the app's connector or MCP settings to grant them.
+- **Unauthorized**: the AudioPod connection has expired or been disconnected; ask the user to reconnect it from the app's connector or MCP settings.
 - Never quote prices or credit amounts. Link https://audiopod.ai/pricing.
