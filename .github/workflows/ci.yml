@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  claude:
+    name: Claude plugins
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Marketplace lists both plugins and each source exists
+        run: python3 scripts/check_claude_manifests.py
+      - name: Install Claude Code CLI
+        run: npm install -g @anthropic-ai/claude-code
+      - name: claude plugin validate (marketplace and both plugins)
+        run: |
+          claude plugin validate --strict .
+          claude plugin validate --strict plugins/audiopod
+          claude plugin validate --strict plugins/audiopod-studio
+
+  openai:
+    name: OpenAI plugin
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Codex manifest (fields, limits, https, live URLs)
+        run: python3 scripts/check_codex_manifest.py
+      - name: Host-neutral language in shared skills
+        run: python3 scripts/lint_neutral_language.py
+      - name: Build ZIP and enforce size limits
+        run: scripts/build-openai-zip.sh
+      - name: Host-neutral language in the built ZIP
+        run: |
+          mkdir -p dist/unzipped
+          unzip -q dist/audiopod-openai.zip -d dist/unzipped
+          test ! -e dist/unzipped/commands
+          test ! -e dist/unzipped/evals
+          test ! -e dist/unzipped/.claude-plugin
+          test -f dist/unzipped/.codex-plugin/plugin.json
+          test -f dist/unzipped/.mcp.json
+          python3 -c 'import json,sys; n=json.load(open("dist/unzipped/.codex-plugin/plugin.json"))["name"]; sys.exit(0 if n=="audiopod" else f"ZIP manifest name is {n!r}, expected audiopod")'
+          python3 scripts/lint_neutral_language.py dist/unzipped
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audiopod-openai-zip
+          path: dist/audiopod-openai.zip

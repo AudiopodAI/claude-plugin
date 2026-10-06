@@ -1,0 +1,55 @@
+{
+  "name": "audiopod-studio",
+  "version": "0.4.0",
+  "description": "AudioPod's audio tools for your own recordings: split songs into stems, transcribe with speaker labels and subtitles, convert audio to MIDI, clean up noisy audio, separate speakers, and convert formats. Also creates music, voiceovers, and custom voices.",
+  "author": {
+    "name": "AudioPod",
+    "email": "support@audiopod.ai",
+    "url": "https://audiopod.ai"
+  },
+  "homepage": "https://audiopod.ai",
+  "license": "MIT",
+  "keywords": [
+    "audio",
+    "stems",
+    "transcription",
+    "subtitles",
+    "midi",
+    "denoise",
+    "podcast",
+    "music",
+    "voiceover"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "AudioPod",
+    "shortDescription": "Stems, transcripts and MIDI",
+    "longDescription": "AudioPod works on the audio you already have. Paste a link to a song, podcast, interview, lecture, or video and ask in plain language: split a track into stems (vocals, drums, bass, piano, guitar) to make an acapella or an instrumental, transcribe it with speaker labels and SRT or VTT subtitles in 100+ languages, convert a melody or a whole song to MIDI for your DAW, remove background noise, give each speaker their own track, or convert between audio and video formats. One job's output can feed the next, so you can clean up a noisy interview and then transcribe it in a single request.\n\nAudioPod can also create audio: voiceovers from text in 200+ languages, original songs, instrumentals, and beats from a description, and custom voices from a sample you have the rights to use.\n\nGood to know:\n- AudioPod works from a public or shareable link to your audio (for example a cloud storage share link). It cannot read files on your device; you can also upload files in the AudioPod dashboard.\n- Jobs run asynchronously on AudioPod's servers. The assistant starts a job, then checks its status until the output links are ready. Longer files take longer.\n- You sign in with your AudioPod account, and usage draws on that account's credits. See https://audiopod.ai/pricing for plans and credits.\n- Audio you send is processed on AudioPod's servers and stored under AudioPod's privacy policy.",
+    "developerName": "AudioPod",
+    "category": "Creativity",
+    "capabilities": [
+      "Split songs into stems: vocals, drums, bass, piano, guitar, acapellas, and instrumentals",
+      "Transcribe audio and video with speaker labels and SRT or VTT subtitles",
+      "Convert audio to MIDI",
+      "Clean up noisy audio",
+      "Separate speakers into one track each",
+      "Convert audio and video formats",
+      "Create music, songs, and beats from a description",
+      "Text to speech voiceovers in 200+ languages",
+      "Create custom voices and re-voice recordings"
+    ],
+    "websiteURL": "https://audiopod.ai",
+    "supportURL": "https://audiopod.ai/support",
+    "privacyPolicyURL": "https://audiopod.ai/privacy",
+    "termsOfServiceURL": "https://audiopod.ai/terms",
+    "defaultPrompt": [
+      "Remove the vocals from a song I'll send you a link to.",
+      "Transcribe my podcast with speaker labels and SRT subtitles.",
+      "Convert this piano recording to MIDI."
+    ],
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/icon.png",
+    "screenshots": []
+  }
+}
