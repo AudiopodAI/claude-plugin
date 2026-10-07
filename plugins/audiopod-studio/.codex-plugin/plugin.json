@@ -1,6 +1,6 @@
 {
   "name": "audiopod-studio",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "AudioPod's audio tools for your own recordings: split songs into stems, transcribe with speaker labels and subtitles, convert audio to MIDI, clean up noisy audio, separate speakers, and convert formats. Also creates music, voiceovers, and custom voices.",
   "author": {
     "name": "AudioPod",

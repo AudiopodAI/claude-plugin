@@ -1,0 +1,1 @@
+{"id": "acct_3f9c2a7d1e5b4c8a9f0e6d2b7a1c4e8f", "plan": "Creator", "subscribed": true, "credits": {"available": 12345, "monthly": 10000, "payg": 2345}, "renews_at": "2030-01-15T12:00:00Z", "billing_url": "https://audiopod.ai/dashboard/account?src=other", "pricing_url": "https://audiopod.ai/pricing?src=other"}

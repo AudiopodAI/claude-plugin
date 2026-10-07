@@ -5,8 +5,8 @@ description: Use when the user asks about an AudioPod job - whether it is done, 
 
 # AudioPod jobs, polling, and credits
 
-Every AudioPod tool except `check_job_status` starts a **job** and returns a
-job id straight away. The work happens on AudioPod's servers; the finished
+Every AudioPod tool except `check_job_status` and `get_account` starts a
+**job** and returns a job id straight away. The work happens on AudioPod's servers; the finished
 output appears later. This skill is how to follow a job to the end.
 
 ## Tool
@@ -49,7 +49,8 @@ output appears later. This skill is how to follow a job to the end.
    - `COMPLETED`: report every output URL in the result with its label, quoted
      exactly. These links are safe to share with the user.
    - `FAILED`: report the error message and suggest a fix. Failed jobs do not
-     keep the credits reserved for them.
+     keep the credits reserved for them. If it failed for insufficient
+     credits, call `get_account` and follow the credits rules below.
 4. Never tell the user a job is done before step 3 says `COMPLETED`, and never
    resubmit a job just to check on it: that starts and charges a second job.
 
@@ -63,11 +64,17 @@ the real output. Wait for the first job to be `COMPLETED` first.
 
 - Each job is paid in advance from the connected AudioPod account.
   If a job fails, its credits are returned.
-- `check_job_status` costs nothing.
-- **Insufficient credits (402)**: tell the user plainly and link
-  https://audiopod.ai/pricing. Do not retry in a loop.
-- Never state prices, rates, or credit amounts. Always link
+- `check_job_status` and `get_account` cost nothing.
+- **Insufficient credits** (a tool is refused, or a job fails, for lack of
+  credits): call `get_account` once, tell the user plainly what plan they are
+  on and how many credits they have left, and share its `billing_url` (add
+  credits) and `pricing_url` (plans) exactly as returned. Do not retry the job
+  in a loop. If `get_account` is unavailable, link
   https://audiopod.ai/pricing.
+- Questions about the balance or plan: use the `audiopod-account` skill.
+- Never state prices, rates, or what a job costs. The only credit numbers to
+  quote are the account balances `get_account` returned. Always link the
+  pricing page for prices.
 
 ## Connection and permissions
 

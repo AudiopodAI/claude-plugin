@@ -1,7 +1,7 @@
 {
   "name": "audiopod",
   "displayName": "AudioPod",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "AudioPod's audio-processing tools inside Claude: transcribe recordings with speaker labels and subtitles, split songs into stems, remove background noise, separate speakers, and convert formats.",
   "author": {
     "name": "AudioPod",

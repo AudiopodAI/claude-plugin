@@ -58,7 +58,7 @@ from one job can be passed straight into the next.
 - **Where your data goes**: audio, video, and text you send through this plugin
   are sent to AudioPod's servers at `mcp.audiopod.ai` and `api.audiopod.ai` for
   processing. Nothing runs locally.
-- **Credits**: each job consumes credits from the AudioPod account you connected. Checking a job's status is free. See
+- **Credits**: each job consumes credits from the AudioPod account you connected. Checking a job's status, or asking how many credits you have left and which plan you are on, is free. See
   <https://audiopod.ai/pricing>.
 - **Retention**: outputs are stored according to AudioPod's retention policy,
   described at <https://audiopod.ai/privacy>.
