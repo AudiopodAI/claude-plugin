@@ -1,0 +1,1 @@
+{"job_id": 4303, "status": "PENDING", "tool": "record_music_score", "source_job_id": 4302, "message": "Recording your score. The track will be ready in 1-3 minutes — the whole piece is performed, so a re-recording won't be the earlier take with a patch applied."}
