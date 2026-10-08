@@ -1,0 +1,1 @@
+{"job_id": 4302, "status": "PENDING", "tool": "revise_music_score", "source_job_id": 4301, "message": "Making that change — the revised score will be ready in about 10 seconds. It has no audio until you record it."}

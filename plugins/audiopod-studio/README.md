@@ -16,7 +16,8 @@ links.
 - **Clean up recordings**: remove background noise, split a conversation into
   one track per speaker, and convert between audio and video formats.
 - **Create voiceovers** from text in 200+ languages.
-- **Create music**: songs, instrumentals, and beats from a description.
+- **Create music**: songs, instrumentals, and beats from a description, or
+  compose a song you can reshape in plain words before it is recorded.
 - **Custom voices**: create a voice from a sample you have the rights to, or
   re-voice a recording.
 

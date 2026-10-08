@@ -5,8 +5,8 @@ description: Use when the user asks about an AudioPod job - whether it is done, 
 
 # AudioPod jobs, polling, and credits
 
-Every AudioPod tool except `check_job_status` and `get_account` starts a
-**job** and returns a job id straight away. The work happens on AudioPod's servers; the finished
+Every AudioPod tool except `check_job_status`, `get_account` and
+`get_music_score` starts a **job** and returns a job id straight away. The work happens on AudioPod's servers; the finished
 output appears later. This skill is how to follow a job to the end.
 
 ## Tool
@@ -21,7 +21,12 @@ output appears later. This skill is how to follow a job to the end.
 
 `tool` is one of: `transcribe_audio`, `separate_stems`, `denoise_audio`,
 `separate_speakers`, `convert_media`, `audio_to_midi`, `text_to_speech`, `generate_music`,
-`clone_voice`, `change_voice`.
+`clone_voice`, `change_voice`, `compose_music`, `revise_music_score`,
+`record_music_score`, `edit_music_score`.
+
+A `compose_music` or `revise_music_score` job is a score with no audio: when
+it is `COMPLETED`, read it with `get_music_score` (free) rather than looking
+for an output URL.
 
 - Know the id: pass `job_id` and `tool`. Job ids are only unique per tool.
 - Know the id but not the tool: use the tool that started that job earlier in
@@ -65,7 +70,7 @@ the real output. Wait for the first job to be `COMPLETED` first.
 
 - Each job is paid in advance from the connected AudioPod account.
   If a job fails, its credits are returned.
-- `check_job_status` and `get_account` cost nothing.
+- `check_job_status`, `get_account` and `get_music_score` cost nothing.
 - **Insufficient credits** (a tool is refused, or a job fails, for lack of
   credits): call `get_account` once, tell the user plainly what plan they are
   on and how many credits they have left, and share its `billing_url` (add
@@ -76,6 +81,12 @@ the real output. Wait for the first job to be `COMPLETED` first.
 - Never state prices, rates, or what a job costs. The only credit numbers to
   quote are the account balances `get_account` returned. Always link the
   pricing page for prices.
+- **Exception — score-first music** (see the audiopod-music skill): before
+  `compose_music`, `revise_music_score` or `record_music_score`, state the
+  fixed credit cost those tools give (165 credits to write or revise a score;
+  about 16.5 credits per second to record, with the exact amount from
+  `get_music_score`), and get the user's yes before recording. Never quote
+  plan prices.
 
 ## Connection and permissions
 

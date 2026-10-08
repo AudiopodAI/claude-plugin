@@ -1,0 +1,1 @@
+{"job_id": 4301, "status": "PENDING", "tool": "compose_music", "lyrics_source": "audiopod", "message": "Writing your score — it will be ready in about 10 seconds. It has no audio yet: ask for changes in plain words, or record it when you're happy with it."}
