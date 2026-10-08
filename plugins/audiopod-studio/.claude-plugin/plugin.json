@@ -1,7 +1,7 @@
 {
   "name": "audiopod-studio",
   "displayName": "AudioPod Studio",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "The full AudioPod toolkit inside Claude, including music, text to speech, and voice tools: transcribe recordings, split songs into stems, clean up noisy audio, separate speakers, convert formats, and create voiceovers, music, and custom voices.",
   "author": {
     "name": "AudioPod",
