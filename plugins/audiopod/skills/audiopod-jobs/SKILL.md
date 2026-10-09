@@ -11,7 +11,7 @@ output appears later. This skill is how to follow a job to the end.
 
 ## Tool
 
-`check_job_status` on the `audiopod` MCP server. Free to call; it only reads.
+`check_job_status` on the `audiopod` MCP server. It only reads.
 
 | Argument | Required | Notes |
 |---|---|---|
@@ -64,7 +64,7 @@ the real output. Wait for the first job to be `COMPLETED` first.
 
 - Each job is paid in advance from the connected AudioPod account.
   If a job fails, its credits are returned.
-- `check_job_status` and `get_account` cost nothing.
+- `check_job_status` and `get_account` only read; they start no job.
 - **Insufficient credits** (a tool is refused, or a job fails, for lack of
   credits): call `get_account` once, tell the user plainly what plan they are
   on and how many credits they have left, and share its `billing_url` (add

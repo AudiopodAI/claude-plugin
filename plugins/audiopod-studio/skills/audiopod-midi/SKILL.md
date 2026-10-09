@@ -19,8 +19,9 @@ multitrack MIDI plus one per transcribed part. The result is MIDI, not audio.
 | `engine` | no | `general` (default), `piano`, or `vocal` |
 | `tempo_bpm` | no | Tempo in beats per minute, 30 to 300, if the user knows it |
 
-The `piano` and `vocal` specialist engines need a Creator plan or above. If the
-account lacks the plan, the tool says so: relay that plainly and suggest the
+The `piano` and `vocal` specialist engines require a higher plan. If the
+account does not have it, the tool says so: relay that plainly, link the
+account page (https://audiopod.ai/dashboard/account), and suggest the
 `general` engine instead.
 
 ## Supplying the file

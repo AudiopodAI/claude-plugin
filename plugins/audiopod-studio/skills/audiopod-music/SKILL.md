@@ -67,29 +67,29 @@ Use it only when the user wants to shape the tune before it is recorded.
 1. **Write** — `compose_music` with `style` plus **either** `description`
    (AudioPod writes the lyrics; optional `target_seconds` 30 to 300 and
    `language`) **or** the user's own `lyrics`. Never both. It returns a job id
-   for a score with no audio yet. Costs **165 credits**, takes about 10
-   seconds, and is refunded if it fails.
+   for a score with no audio yet. Takes about 10 seconds.
+   Each call starts a new paid job; confirm with the user before running it again.
 2. **Show** — once `check_job_status` (with `tool: "compose_music"`) says
-   `COMPLETED`, call `get_music_score` (free) and describe the song to the
+   `COMPLETED`, call `get_music_score` (read-only) and describe the song to the
    user in plain words: key, tempo, sections, length.
 3. **Revise** — for every change the user asks for, call
    `revise_music_score` with the score's `job_id` and the request as
    `instruction`, in the user's own words. Narrow it with `section`
    ("chorus") or `bars` (`{"start": 5, "end": 8}`) when the user names one.
    Each revision returns a **new** job id for the new score; use that id next.
-   Costs **165 credits** per revision, refunded if the change cannot be made.
+   Each call starts a new paid job; confirm with the user before running it again.
    Repeat as often as the user likes.
-4. **Record** — tell the user what recording costs (about **16.5 credits per
-   second** of the score's length; `get_music_score` reports the length and
-   the exact cost), get a clear yes, then call `record_music_score` with the
-   latest score's `job_id`. Takes one to three minutes.
+4. **Record** — tell the user that recording starts a new paid job and how
+   long the track will be (`get_music_score` reports the length), get a
+   clear yes, then call `record_music_score` with the latest score's
+   `job_id`. Takes one to three minutes.
 
 Rules:
 
 - **Always use `revise_music_score` for changes.** Never write or edit the
   notation yourself, and do not pass `abc` unless the user handed you a
   complete score of their own.
-- **Confirm before recording.** Recording is the expensive step.
+- **Confirm before recording.** Each call starts a new paid job; confirm with the user before running it again.
 - If `revise_music_score` says plain-English changes are not available on the
   account yet, say so and offer to record the score as it is.
 - If a revision is refused because it could not be made safely, nothing was
@@ -143,11 +143,11 @@ Each call makes a new job and spends credits again, so do not resubmit to
 
 ## Credits
 
-- Song mode: never quote prices or credit amounts. Link
-  https://audiopod.ai/pricing.
-- Score-first mode: state the fixed costs above before spending (165 credits
-  to write or revise a score, about 16.5 credits per second to record), and
-  never quote plan prices.
+- Never quote prices or credit amounts, in either mode. Link
+  https://audiopod.ai/pricing if the user asks.
+- Score-first mode: each `compose_music`, `revise_music_score` and
+  `record_music_score` call starts a new paid job; confirm with the user
+  before running one again, and always before recording.
 
 ## Errors
 
