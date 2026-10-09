@@ -6,7 +6,7 @@ description: Use when the user asks about their AudioPod account - how many cred
 # AudioPod account, plan, and credits
 
 `get_account` on the `audiopod` MCP server reads the connected AudioPod
-account. It is free, changes nothing, and takes no arguments.
+account. It only reads, changes nothing, and takes no arguments.
 
 ## When to call it
 
@@ -23,7 +23,7 @@ call: the balance changes with every job.
 
 | Field | Meaning |
 |---|---|
-| `plan` | The account's plan name, for example Basic or Creator |
+| `plan` | The account's plan name |
 | `subscribed` | `true` on a paid plan |
 | `credits.available` | Total credits the account can spend right now |
 | `credits.monthly` | Credits from the plan's monthly allowance (reset each cycle) |
@@ -31,15 +31,16 @@ call: the balance changes with every job.
 | `renews_at` | When a paid plan next renews (only present when it will) |
 | `ends_at` | When a paid plan that will not renew ends (only present then) |
 | `billing_url` | The account's billing and credits page |
-| `pricing_url` | AudioPod's plans page |
+| `pricing_url` | AudioPod's plans page, for reference |
 
 ## How to answer
 
 1. Call `get_account`.
 2. State the plan and `credits.available`, with the monthly and pay-as-you-go
    split when both are non-zero. Give the renewal or end date if present.
-3. Link `billing_url` for adding credits or managing the plan, and
-   `pricing_url` for comparing plans. Quote both links exactly as returned.
+3. Link `billing_url` to manage the account, quoted exactly as returned.
+   Share `pricing_url` (also exactly as returned) only when the user asks
+   about plans or a tool was refused for lack of credits.
 4. If the balance is low or zero, say so plainly and point to those links.
 
 ## Rules

@@ -11,7 +11,7 @@ output appears later. This skill is how to follow a job to the end.
 
 ## Tool
 
-`check_job_status` on the `audiopod` MCP server. Free to call; it only reads.
+`check_job_status` on the `audiopod` MCP server. It only reads.
 
 | Argument | Required | Notes |
 |---|---|---|

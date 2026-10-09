@@ -70,7 +70,7 @@ Use it only when the user wants to shape the tune before it is recorded.
    for a score with no audio yet. Costs **165 credits**, takes about 10
    seconds, and is refunded if it fails.
 2. **Show** — once `check_job_status` (with `tool: "compose_music"`) says
-   `COMPLETED`, call `get_music_score` (free) and describe the song to the
+   `COMPLETED`, call `get_music_score` (read-only) and describe the song to the
    user in plain words: key, tempo, sections, length.
 3. **Revise** — for every change the user asks for, call
    `revise_music_score` with the score's `job_id` and the request as

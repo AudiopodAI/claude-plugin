@@ -11,7 +11,7 @@ output appears later. This skill is how to follow a job to the end.
 
 ## Tool
 
-`check_job_status` on the `audiopod` MCP server. Free to call; it only reads.
+`check_job_status` on the `audiopod` MCP server. It only reads.
 
 | Argument | Required | Notes |
 |---|---|---|
@@ -25,7 +25,7 @@ output appears later. This skill is how to follow a job to the end.
 `record_music_score`, `edit_music_score`.
 
 A `compose_music` or `revise_music_score` job is a score with no audio: when
-it is `COMPLETED`, read it with `get_music_score` (free) rather than looking
+it is `COMPLETED`, read it with `get_music_score` (read-only) rather than looking
 for an output URL.
 
 - Know the id: pass `job_id` and `tool`. Job ids are only unique per tool.
