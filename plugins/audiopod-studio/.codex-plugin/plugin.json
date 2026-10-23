@@ -1,6 +1,6 @@
 {
   "name": "audiopod-studio",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "AudioPod's audio tools for your own recordings: split songs into stems, transcribe with speaker labels and subtitles, convert audio to MIDI, clean up noisy audio, separate speakers, and convert formats. Also creates music, voiceovers, and custom voices.",
   "author": {
     "name": "AudioPod",
@@ -52,5 +52,75 @@
     "composerIcon": "./assets/icon.png",
     "logo": "./assets/icon.png",
     "screenshots": []
+  },
+  "extensions": {
+    "com.openai": {
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Remove the vocals from a song (public-domain 1908 recording)",
+              "prompt": "Remove the vocals from this song so I have an instrumental: https://upload.wikimedia.org/wikipedia/commons/transcoded/c/cd/MeekerBallGame.ogg/MeekerBallGame.ogg.mp3",
+              "tools_triggered": [
+                "separate_stems",
+                "check_job_status"
+              ],
+              "expected_behavior": "Calls separate_stems with the URL exactly as given and a two-stem mode (2stem_vocals or 2stem_other), polls check_job_status until the job is COMPLETED, then returns every stem link with its label, including the instrumental. Does not claim the stems are ready before COMPLETED and states no prices."
+            },
+            {
+              "description": "Transcribe a short public-domain speech clip with subtitles",
+              "prompt": "Transcribe this recording and give me SRT subtitles: https://upload.wikimedia.org/wikipedia/commons/transcoded/d/dd/Armstrong_Small_Step.ogg/Armstrong_Small_Step.ogg.mp3",
+              "tools_triggered": [
+                "transcribe_audio",
+                "check_job_status"
+              ],
+              "expected_behavior": "Calls transcribe_audio with the URL and format srt, polls check_job_status until COMPLETED, then calls check_job_status with include_format srt and returns the SRT text from the result. Never invents transcript text."
+            },
+            {
+              "description": "Convert a public-domain solo piano recording to MIDI",
+              "prompt": "Convert this piano recording to MIDI: https://upload.wikimedia.org/wikipedia/commons/transcoded/9/90/Erik_Satie_-_gymnopedies_-_la_1_ere._lent_et_douloureux.ogg/Erik_Satie_-_gymnopedies_-_la_1_ere._lent_et_douloureux.ogg.mp3",
+              "tools_triggered": [
+                "audio_to_midi",
+                "check_job_status"
+              ],
+              "expected_behavior": "Calls audio_to_midi with the URL exactly as given, polls check_job_status with tool audio_to_midi until COMPLETED, and returns the MIDI file links from the result. Never invents a download URL."
+            },
+            {
+              "description": "Clean up background noise on a public-domain recording",
+              "prompt": "Remove the background noise from this clip: https://upload.wikimedia.org/wikipedia/commons/transcoded/d/dd/Armstrong_Small_Step.ogg/Armstrong_Small_Step.ogg.mp3",
+              "tools_triggered": [
+                "denoise_audio",
+                "check_job_status"
+              ],
+              "expected_behavior": "Calls denoise_audio with the URL exactly as given, polls check_job_status until COMPLETED, and returns the cleaned audio link."
+            },
+            {
+              "description": "Check the remaining credit balance on the connected account",
+              "prompt": "How many AudioPod credits do I have left?",
+              "tools_triggered": [
+                "get_account"
+              ],
+              "expected_behavior": "Calls get_account and reports the plan name, the available credit balance, and the renewal date if present, using only the returned values. Does not link a pricing, plans, or billing page, does not suggest upgrading or buying or adding credits, and states no prices."
+            }
+          ],
+          "negative": [
+            {
+              "description": "General music-theory question that needs no audio processing",
+              "prompt": "What is the difference between a major and a minor chord?"
+            },
+            {
+              "description": "Transcription request with no link to the audio",
+              "prompt": "Transcribe the file on my desktop."
+            },
+            {
+              "description": "Request outside the plugin's scope",
+              "prompt": "Book me a flight to Paris next Friday."
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "No purchases happen in ChatGPT: users sign in to an existing AudioPod account and use the features already on it. When a feature is not on their plan or their credits run out, the plugin only says so, with no plans shown, no upgrade prompts and no purchase links."
+      }
+    }
   }
 }

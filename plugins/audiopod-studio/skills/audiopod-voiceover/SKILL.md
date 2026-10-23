@@ -52,9 +52,9 @@ its part number.
 
 ## Errors
 
-- **Insufficient credits (402)**: tell the user and link
-  https://audiopod.ai/pricing. Do not retry. For long scripts, suggest
+- **Insufficient credits (402)**: tell the user plainly that the AudioPod
+  account doesn't have enough credits for this job, and stop. Do not retry. For long scripts, suggest
   confirming the account balance before submitting every part.
 - **Missing scope**: the connection needs `voice:synthesize` and `audio:write`. Reconnect AudioPod from the app's connector or MCP settings to grant them.
 - **Unknown voice**: ask the user to confirm the voice, or omit `voice_id`.
-- Never quote prices or credit amounts. Link https://audiopod.ai/pricing.
+- Never quote prices or credit amounts.

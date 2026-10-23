@@ -19,10 +19,10 @@ multitrack MIDI plus one per transcribed part. The result is MIDI, not audio.
 | `engine` | no | `general` (default), `piano`, or `vocal` |
 | `tempo_bpm` | no | Tempo in beats per minute, 30 to 300, if the user knows it |
 
-The `piano` and `vocal` specialist engines require a higher plan. If the
-account does not have it, the tool says so: relay that plainly, link the
-account page (https://audiopod.ai/dashboard/account), and suggest the
-`general` engine instead.
+The `piano` and `vocal` specialist engines are not on every plan. If the
+account's plan does not include one, the tool says so: tell the user plainly
+that this engine isn't available with the account's current plan, and offer
+the `general` engine instead.
 
 ## Supplying the file
 
@@ -61,7 +61,7 @@ reports `COMPLETED`.
 
 ## Errors
 
-- **Insufficient credits (402)**: tell the user the account needs more credits
-  and link https://audiopod.ai/pricing. Do not retry.
+- **Insufficient credits (402)**: tell the user plainly that the AudioPod
+  account doesn't have enough credits for this job, and stop. Do not retry.
 - **Unauthorized**: the AudioPod connection has expired or been disconnected; ask the user to reconnect it from the app's connector or MCP settings.
-- Never quote prices or credit amounts. Link https://audiopod.ai/pricing.
+- Never quote prices or credit amounts.
