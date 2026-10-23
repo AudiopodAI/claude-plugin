@@ -97,8 +97,8 @@ presigned JSON link; tell the user it expires after about an hour.
 
 ## Errors
 
-- **Insufficient credits (402)**: the account does not have enough credits for
-  this job. Tell the user and link https://audiopod.ai/pricing. Do not retry.
+- **Insufficient credits (402)**: tell the user plainly that the AudioPod
+  account doesn't have enough credits for this job, and stop. Do not retry.
 - **Missing scope**: the AudioPod connection doesn't include the `transcribe` or `audio:read` permissions; reconnect AudioPod from the app's connector or MCP settings to grant them.
 - **Unauthorized**: the AudioPod connection has expired or been disconnected; ask the user to reconnect it from the app's connector or MCP settings.
-- Never quote prices or credit amounts. Link https://audiopod.ai/pricing.
+- Never quote prices or credit amounts.

@@ -81,8 +81,8 @@ Each tool returns a **job id**, not the finished audio.
 
 ## Errors
 
-- **Insufficient credits (402)**: tell the user and link
-  https://audiopod.ai/pricing. Do not retry.
+- **Insufficient credits (402)**: tell the user plainly that the AudioPod
+  account doesn't have enough credits for this job, and stop. Do not retry.
 - **Missing scope**: these tools need `audio:write`, and polling needs
   `audio:read`. Reconnect AudioPod from the app's connector or MCP settings to grant them.
-- Never quote prices or credit amounts. Link https://audiopod.ai/pricing.
+- Never quote prices or credit amounts.

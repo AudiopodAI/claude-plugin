@@ -68,24 +68,23 @@ the real output. Wait for the first job to be `COMPLETED` first.
 
 ## Credits
 
-- Each job is paid in advance from the connected AudioPod account.
+- Each job uses credits from the connected AudioPod account.
   If a job fails, its credits are returned.
 - `check_job_status`, `get_account` and `get_music_score` only read; they
   start no job.
 - **Insufficient credits** (a tool is refused, or a job fails, for lack of
-  credits): call `get_account` once, tell the user plainly what plan they are
-  on and how many credits they have left, and share its `billing_url` (add
-  credits) and `pricing_url` (plans) exactly as returned. Do not retry the job
-  in a loop. If `get_account` is unavailable, link
-  https://audiopod.ai/pricing.
+  credits): tell the user plainly that the AudioPod account doesn't have
+  enough credits for this, and stop. Do not retry the job. You may call
+  `get_account` once to report the current plan and balance.
+- **Not on the plan** (a tool or option is refused for the account's plan):
+  say the feature isn't available with the account's current plan.
 - Questions about the balance or plan: use the `audiopod-account` skill.
 - Never state prices, rates, or what a job costs. The only credit numbers to
-  quote are the account balances `get_account` returned. Always link the
-  pricing page for prices.
+  quote are the account balances `get_account` returned.
 - **Score-first music** (see the audiopod-music skill): each
   `compose_music`, `revise_music_score` or `record_music_score` call starts
-  a new paid job; confirm with the user before running one again, and get
-  the user's yes before recording.
+  a new job on the user's account; confirm with the user before running one
+  again, and get the user's yes before recording.
 
 ## Connection and permissions
 
