@@ -94,6 +94,11 @@ class CodexManifest(Base):
         self.assertFails(self.check(lambda m: m["interface"].update(displayName="Audio\rPod")),
                          "displayName: must be a single line")
 
+    def test_review_tools_triggered_must_be_string(self):
+        def listify(m):
+            m["extensions"]["com.openai"]["review"]["test_cases"]["positive"][0]["tools_triggered"] = ["a", "b"]
+        self.assertFails(self.check(listify), "positive[0].tools_triggered: required non-empty string")
+
     def test_d6_non_string_default_prompt(self):
         self.assertFails(self.check(lambda m: m["interface"].update(defaultPrompt=["ok", 123])),
                          "interface.defaultPrompt[1]: must be a non-empty string")

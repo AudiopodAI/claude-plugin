@@ -78,13 +78,13 @@ Both tools return a **job id**.
 
 ## Errors
 
-- **Insufficient credits (402)**: tell the user and link
-  https://audiopod.ai/pricing. Do not retry.
+- **Insufficient credits (402)**: tell the user plainly that the AudioPod
+  account doesn't have enough credits for this job, and stop. Do not retry.
 - **Missing scope**: `clone_voice` needs `voice:clone`; `change_voice` needs
   `voice:synthesize`; both need `audio:write`. Reconnect AudioPod from the app's connector or MCP settings to grant them.
 - **Consent required**: `clone_voice` was called without
   `consent_confirmed: true`. Ask the user to confirm consent, then call it
   again; if they cannot, do not clone.
-- **Voice limit reached**: the account's custom voice slots are full. Link
-  the account page, https://audiopod.ai/dashboard/account.
-- Never quote prices or credit amounts. Link https://audiopod.ai/pricing.
+- **Voice limit reached**: tell the user plainly that the account's custom
+  voice slots are full. Do not retry.
+- Never quote prices or credit amounts.

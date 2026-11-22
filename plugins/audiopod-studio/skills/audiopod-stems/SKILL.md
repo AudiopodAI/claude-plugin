@@ -64,8 +64,8 @@ Never say the stems are ready before `check_job_status` reports `COMPLETED`.
 
 ## Errors
 
-- **Insufficient credits (402)**: tell the user the account needs more credits
-  and link https://audiopod.ai/pricing. Do not retry.
+- **Insufficient credits (402)**: tell the user plainly that the AudioPod
+  account doesn't have enough credits for this job, and stop. Do not retry.
 - **Missing scope**: the connection needs `stems:separate` and `audio:write`. Reconnect AudioPod from the app's connector or MCP settings to grant them.
 - **Unauthorized**: the AudioPod connection has expired or been disconnected; ask the user to reconnect it from the app's connector or MCP settings.
-- Never quote prices or credit amounts. Link https://audiopod.ai/pricing.
+- Never quote prices or credit amounts.

@@ -233,6 +233,14 @@ def validate(plugin, in_zip, offline):
     for key in ("logoDark", "composerIconDark"):
         if key in ui:
             check_icon(plugin, ui[key], f"interface.{key}")
+    # Review test cases: the portal types every field as a string (a list in tools_triggered is rejected).
+    cases = ((m.get("extensions") or {}).get("com.openai") or {}).get("review", {}).get("test_cases", {})
+    for kind, fields in (("positive", ("description", "prompt", "tools_triggered", "expected_behavior")),
+                         ("negative", ("description", "prompt"))):
+        for i, case in enumerate(cases.get(kind) or []):
+            for key in fields:
+                check_str(case, key, 4000, f"extensions.com.openai.review.test_cases.{kind}[{i}].")
+
     shots = ui.get("screenshots") or []
     if not isinstance(shots, list):
         err("interface.screenshots: must be a list")

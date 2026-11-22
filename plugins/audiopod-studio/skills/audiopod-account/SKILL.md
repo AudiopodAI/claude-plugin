@@ -24,34 +24,32 @@ call: the balance changes with every job.
 | Field | Meaning |
 |---|---|
 | `plan` | The account's plan name |
-| `subscribed` | `true` on a paid plan |
+| `subscribed` | `true` when the plan renews on a cycle |
 | `credits.available` | Total credits the account can spend right now |
 | `credits.monthly` | Credits from the plan's monthly allowance (reset each cycle) |
-| `credits.payg` | Pay-as-you-go credits (they do not expire) |
-| `renews_at` | When a paid plan next renews (only present when it will) |
-| `ends_at` | When a paid plan that will not renew ends (only present then) |
-| `billing_url` | The account's billing and credits page |
-| `pricing_url` | AudioPod's plans page, for reference |
+| `credits.payg` | Credits outside the monthly allowance (they do not expire) |
+| `renews_at` | When the plan next renews (only present when it will) |
+| `ends_at` | When a plan that will not renew ends (only present then) |
 
 ## How to answer
 
 1. Call `get_account`.
-2. State the plan and `credits.available`, with the monthly and pay-as-you-go
+2. State the plan and `credits.available`, with the monthly and non-expiring
    split when both are non-zero. Give the renewal or end date if present.
-3. Link `billing_url` to manage the account, quoted exactly as returned.
-   Share `pricing_url` (also exactly as returned) only when the user asks
-   about plans or a tool was refused for lack of credits.
-4. If the balance is low or zero, say so plainly and point to those links.
+3. If the balance is low or zero, say so plainly. Do not suggest changing
+   plan or adding credits.
+4. Share no links to account-management or plans pages, even if the result
+   contains one. If the user asks how to change their plan or add credits,
+   say they can manage that in their AudioPod account, with no link.
 
 ## Rules
 
 - Quote only the numbers `get_account` returned for this account. Never guess,
   estimate, or round them into something else.
 - **Never state prices, per-job costs, or how many credits a job will use.**
-  AudioPod's prices and plan allowances live at the pricing link; send the user
-  there instead.
 - Do not promise a job will fit in the remaining balance. Start the job; if it
-  is refused for credits, call `get_account` and share the links.
+  is refused for credits, tell the user plainly that the account doesn't have
+  enough credits for this, and stop.
 - The account is whichever AudioPod account the user connected. If the numbers
   look wrong to them, they may have connected a different account; they can
   reconnect AudioPod from the app's connector or MCP settings.
